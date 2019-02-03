@@ -23,9 +23,7 @@ function structureIsValid(ssn) {
 
 // Validate id number (......-XXX.).
 function idNumberIsValid(ssn, allowTemporary) {
-  allowTemporary = typeof allowTemporary === 'undefined' ? false : true;
-  idNumber = ssn.substring(7, 10);
-  idNumber = parseInt(idNumber);
+  var idNumber = parseInt(ssn.substring(7, 10));
 
   // Temporary id number can range from 900 to 999.
   if (allowTemporary && idNumber > 899 && idNumber < 1000) {
@@ -40,7 +38,10 @@ function idNumberIsValid(ssn, allowTemporary) {
 
 // Validate check digit (......-...X).
 function checkDigitIsValid(ssn) {
-  if (getCheckDigit(ssn) === ssn.charAt(ssn.length - 1)) {
+  var expectedCheckDigit = getCheckDigit(ssn).toLowerCase();
+  var checkDigit = ssn.charAt(ssn.length - 1).toLowerCase();
+
+  if (checkDigit === expectedCheckDigit) {
     return true;
   } else {
     return false;
