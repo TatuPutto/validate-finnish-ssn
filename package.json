@@ -1,6 +1,6 @@
 {
   "name": "validate-finnish-ssn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Function for checking if given string is valid Finnish Social Security Number.",
   "main": "index.js",
   "keywords": [
