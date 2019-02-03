@@ -9,7 +9,7 @@ var SSN_REGEX = /^(((0[1-9]|[12][0-9]|3[01])(0[13578]|10|12))|((0[1-9]|[12][0-9]
 export default function isValidFinnishSsn(ssn, allowTemporary) {
   return ssn &&
          structureIsValid(ssn) &&
-         idNumberIsValid(ssn) &&
+         idNumberIsValid(ssn, allowTemporary) &&
          checkDigitIsValid(ssn);
 
 }
@@ -22,7 +22,8 @@ function structureIsValid(ssn) {
 }
 
 // Validate id number (......-XXX.).
-function idNumberIsValid(ssn) {
+function idNumberIsValid(ssn, allowTemporary) {
+  allowTemporary = typeof allowTemporary === 'undefined' ? false : true;
   idNumber = ssn.substring(7, 10);
   idNumber = parseInt(idNumber);
 
